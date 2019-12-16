@@ -27,5 +27,6 @@
 1. Build the image: `docker build -t huntboard ./` from the repo location (/opt/HuntBoard)
 
 ##### Run in Docker
-1. Run the image as a daemon: `docker run -d -p4567:4567 huntboard`
+1. Run the image as a daemon (mapping in the local code so you can edit on the fly):
+   1. `docker run -d -p4567:4567 -v /opt/HuntBoard:\opt\HuntBoard huntboard:latest`
 1. Navigate to http://localhost:4567/test in your browser to view the demo page
