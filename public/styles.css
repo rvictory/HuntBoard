@@ -7,7 +7,6 @@ This style sheet is for css that works regardless of theme
 The root partial class allows us to define variables for reuse later in css.
 More can be found here: https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
 */
-
 :root {
     --primary-color: #423e40;
     --secondary-color: #d9d7d7;
@@ -20,7 +19,7 @@ html,body {
 }
 
 .card {
-    border: 2px;
+    border: 2px solid;
     padding: 10px;
     width: 200px;
     touch-action: none;
