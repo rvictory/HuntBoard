@@ -30,7 +30,7 @@ interact('.card')
             let data = {
                 top: offset.top,
                 left: offset.left,
-                _id: $(event.target).attr("data-card-id"),
+                id: $(event.target).attr("data-card-id"),
                 text: $(event.target).html()
             };
             $.post("/cards/update_position", data, function (success) {
@@ -57,6 +57,7 @@ function dragMoveListener (event) {
 // this is used later in the resizing and gesture demos
 //window.dragMoveListener = dragMoveListener;
 
+
 const renderCard = function(card) {
     $('#card_' + card._id).remove();
     let cardHTML = $("<div class='card' id='card_" + card._id + "'></div>");
@@ -66,15 +67,16 @@ const renderCard = function(card) {
     $(cardHTML).offset({ top: card.top, left: card.left });
 };
 
-$.get("/cards", function (cards) {
-    cards.forEach(function (card) {
-       renderCard(card);
-    });
-});
+var cards = new Cards();
+cards.fetch();
+
+let boardView = new BoardView({model: cards});
+$('#board').append(boardView.render().$el);
 
 // reading
 var es = new EventSource('/card_stream');
 es.onmessage = function(e) {
-    //$('#chat').append(e.data + "\n")
-    renderCard(JSON.parse(e.data));
+    let data = JSON.parse(e.data);
+    cards.get(data.id).set(data);
+    //renderCard(JSON.parse(e.data));
 };

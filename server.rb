@@ -7,7 +7,7 @@ class HuntBoard < Sinatra::Base
   end
 
   @@cards = {
-      "test_card" => {:_id => "test_card", :top => 0, :left => 0, :text => "This is a test card <p></p>"}
+      "test_card" => {:id => "test_card", :top => 0, :left => 0, :text => "This is a test card <p></p>"}
   }
 
   get "/test" do
@@ -22,13 +22,13 @@ class HuntBoard < Sinatra::Base
   post "/cards/update_position" do
     new_top = params[:top]
     new_left = params[:left]
-    _id = params[:_id]
+    id = params[:id]
     text =params[:text]
-    @@cards[_id][:top] = new_top
-    @@cards[_id][:left] = new_left
-    @@cards[_id][:text] = text
+    @@cards[id][:top] = new_top
+    @@cards[id][:left] = new_left
+    @@cards[id][:text] = text
 
-    settings.connections.each { |out| out << "data: #{@@cards[_id].to_json}\n\n" }
+    settings.connections.each { |out| out << "data: #{@@cards[id].to_json}\n\n" }
 
     true.to_json
   end
