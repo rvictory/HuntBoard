@@ -1,0 +1,15 @@
+
+/*
+This style sheet is for dark theme styles only
+ */
+
+body {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.card {
+    border-color: var(--default-border);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
