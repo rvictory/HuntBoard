@@ -15,6 +15,9 @@ var BoardView = Backbone.View.extend({
     addModel : function (newModel) {
         let newView = new CardView({model: newModel});
         this.$el.append(newView.render().$el);
+        // TODO: This seems to be the only way to do this right now, elements can only be
+        //       be made draggable once they are in the DOM proper. Is there a better way?
+        newView.makeDraggable();
     },
 
     removeModel : function () {
